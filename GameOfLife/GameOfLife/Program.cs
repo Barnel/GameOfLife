@@ -12,8 +12,6 @@ namespace Life {
             Random rnd = new Random();
             const int rowNum = 25, colNum = 50;
             int neighs = 0;
-            int option = 0;
-            bool quit = false;
             int[,] cells = new int[rowNum, colNum];
 
             // Example scenarios for different sizes
@@ -90,14 +88,30 @@ namespace Life {
 
             #endregion
 
-            // Choose scenario (be sure that rowNum and colNum are suitable for scenario)
-            //cells = scenario1; option = 1;
-            //cells = scenario2; option = 2;
-            //cells = scenario3; option = 3;
-
-            while (!quit) {
+            while (true) {
                 Console.BackgroundColor = ConsoleColor.Black;
                 Console.Clear();
+                
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.SetCursorPosition(0, 0);
+                Console.WriteLine("Welcome to Game Of Life");
+                Console.WriteLine("Hit any key to start a game.");
+                Console.WriteLine("Press Q during game, to quit to this menu.");
+                Console.WriteLine("Press Q now, to quit game.");
+                Console.WriteLine("Feel free to use different scenarios or change my code.");
+                Console.WriteLine("Have fun playing! :)");
+
+                var input = Console.ReadKey();
+                if(input.Key == ConsoleKey.Q) {
+                    break;
+                }
+
+                // Choose scenario (be sure that rowNum and colNum are suitable for scenario)
+                // If you uncomment a scenario, comment random generation for cells position
+                //cells = scenario1;
+                //cells = scenario2;
+                //cells = scenario3;
+
                 // Random generation of alive cells
                 // 0 to All
                 for (int i = 0; i < rowNum; i++) {
@@ -107,7 +121,7 @@ namespace Life {
                 }
 
                 // Generate positions of alive cells
-                int aliveAtStart = rowNum * colNum / 5;
+                int aliveAtStart = rowNum * colNum / 10;
                 int rowA = 0, colA = 0;
                 for (int i = 0; i < aliveAtStart; i++) {
                     rowA = rnd.Next(0, rowNum);
@@ -130,13 +144,9 @@ namespace Life {
                 }
 
                 Console.BackgroundColor = ConsoleColor.Black;
-                Console.SetCursorPosition(colNum + 5, 0);
-                Console.WriteLine("Q for quit, P to play again, other keys to move to next round.");
+                Console.Clear();
 
-                Console.ReadKey();
-
-
-                while (true) {
+                while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Q)) {
                     // Check for neighbours and optionally revive/kill cells
                     for (int i = 0; i < rowNum; i++) {
                         for (int j = 0; j < colNum; j++) {
@@ -164,27 +174,11 @@ namespace Life {
                         }
                     }
 
+                    // Next round after 250 miliseconds
+                    System.Threading.Thread.Sleep(250);
 
-                    // Quit on Q
-                    var input = Console.ReadKey();
-                    if (input.Key == ConsoleKey.Q) {
-                        quit = true;
-                        break;
-                    }
-                    // Play again on P
-                    else if (input.Key == ConsoleKey.P) {
-                        if (option == 0) {
-                            quit = false;
-                            break;
-                        } else {
-                            Console.BackgroundColor = ConsoleColor.Black;
-                            Console.SetCursorPosition(0, rowNum + 2);
-                            Console.WriteLine("It's premaid scenario, it won't change anything if you play again. Quitting");
-                            Console.ReadKey();
-                            quit = true;
-                            break;
-                        }
-                    }
+                    // Next round after keypress
+                    // Console.ReadKey();
                 }
             }
         }
