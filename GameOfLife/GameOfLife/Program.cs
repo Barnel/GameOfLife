@@ -10,9 +10,9 @@ namespace Life {
 
         static void Main(string[] args) {
             Random rnd = new Random();
-            const int rowNum = 25, colNum = 50;
+            int rowNum, colNum;
             int neighs = 0;
-            int[,] cells = new int[rowNum, colNum];
+            int[,] cells;
 
             // Example scenarios for different sizes
             #region scenarios
@@ -91,20 +91,37 @@ namespace Life {
             while (true) {
                 Console.BackgroundColor = ConsoleColor.Black;
                 Console.Clear();
-                
-                Console.BackgroundColor = ConsoleColor.Black;
                 Console.SetCursorPosition(0, 0);
-                Console.WriteLine("Welcome to Game Of Life");
-                Console.WriteLine("Hit any key to start a game.");
-                Console.WriteLine("Press Q during game, to quit to this menu.");
+
+                Console.WriteLine("Welcome to Game Of Life!");
                 Console.WriteLine("Press Q now, to quit game.");
-                Console.WriteLine("Feel free to use different scenarios or change my code.");
-                Console.WriteLine("Have fun playing! :)");
+                Console.WriteLine("Hit any other key to start game.");
 
                 var input = Console.ReadKey();
-                if(input.Key == ConsoleKey.Q) {
+                if (input.Key == ConsoleKey.Q) {
                     break;
                 }
+
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.Clear();
+                Console.SetCursorPosition(0, 0);
+
+                Console.WriteLine("Give me the number of rows:");
+                rowNum = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Give me the number of columns:");
+                colNum = Convert.ToInt32(Console.ReadLine());
+                cells = new int[rowNum, colNum];
+
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.Clear();
+                Console.SetCursorPosition(0, 0);
+
+                Console.WriteLine("Press Q during game, to go to main menu.");
+                Console.WriteLine("Press any key, to start.");
+                Console.WriteLine("Feel free to change my code.");
+                Console.WriteLine("Have fun playing! :)");
+
+                input = Console.ReadKey();
 
                 Console.BackgroundColor = ConsoleColor.Black;
                 Console.Clear();
