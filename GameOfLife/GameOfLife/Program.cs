@@ -176,19 +176,6 @@ namespace Life {
                         }
                     }
 
-                    // New map
-                    /*for (int a = 0; a < rowNum; a++) {
-                        for (int b = 0; b < colNum; b++) {
-                            Console.SetCursorPosition(b, a);
-                            if (cells[a, b] == 1) {
-                                Console.BackgroundColor = ConsoleColor.Green;
-                            } else {
-                                Console.BackgroundColor = ConsoleColor.Red;
-                            }
-                            Console.Write(" ");
-                        }
-                    }*/
-
                     // Next round after 100 miliseconds
                     System.Threading.Thread.Sleep(100);
 
