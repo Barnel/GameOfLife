@@ -106,6 +106,9 @@ namespace Life {
                     break;
                 }
 
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.Clear();
+
                 // Choose scenario (be sure that rowNum and colNum are suitable for scenario)
                 // If you uncomment a scenario, comment random generation for cells position
                 //cells = scenario1;
@@ -143,9 +146,6 @@ namespace Life {
                     }
                 }
 
-                Console.BackgroundColor = ConsoleColor.Black;
-                Console.Clear();
-
                 while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Q)) {
                     // Check for neighbours and optionally revive/kill cells
                     for (int i = 0; i < rowNum; i++) {
@@ -155,14 +155,20 @@ namespace Life {
 
                             if ((cells[i, j] == 0) && (neighs == 3)) {
                                 cells[i, j] = 1;
+                                Console.SetCursorPosition(j, i);
+                                Console.BackgroundColor = ConsoleColor.Green;
+                                Console.Write(" ");
                             } else if ((cells[i, j] == 1) && ((neighs < 2) || neighs > 3)) {
                                 cells[i, j] = 0;
+                                Console.SetCursorPosition(j, i);
+                                Console.BackgroundColor = ConsoleColor.Red;
+                                Console.Write(" ");
                             }
                         }
                     }
 
                     // New map
-                    for (int a = 0; a < rowNum; a++) {
+                    /*for (int a = 0; a < rowNum; a++) {
                         for (int b = 0; b < colNum; b++) {
                             Console.SetCursorPosition(b, a);
                             if (cells[a, b] == 1) {
@@ -172,7 +178,7 @@ namespace Life {
                             }
                             Console.Write(" ");
                         }
-                    }
+                    }*/
 
                     // Next round after 250 miliseconds
                     System.Threading.Thread.Sleep(250);
