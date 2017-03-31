@@ -146,6 +146,12 @@ namespace Life {
                     }
                 }
 
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.SetCursorPosition(0, rowNum + 2);
+                Console.WriteLine("This is your map, press any key to start playing.");
+
+                Console.ReadKey();
+
                 while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Q)) {
                     // Check for neighbours and optionally revive/kill cells
                     for (int i = 0; i < rowNum; i++) {
@@ -180,8 +186,8 @@ namespace Life {
                         }
                     }*/
 
-                    // Next round after 250 miliseconds
-                    System.Threading.Thread.Sleep(250);
+                    // Next round after 100 miliseconds
+                    System.Threading.Thread.Sleep(100);
 
                     // Next round after keypress
                     // Console.ReadKey();
