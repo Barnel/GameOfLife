@@ -151,6 +151,9 @@ namespace Life {
                 Console.WriteLine("This is your map, press any key to start playing.");
 
                 Console.ReadKey();
+                Console.SetCursorPosition(0, rowNum + 2);
+                Console.WriteLine("                                                  ");
+
 
                 while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Q)) {
                     // Check for neighbours and optionally revive/kill cells
